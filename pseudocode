@@ -1,0 +1,49 @@
+thermistorInputPin = 4
+thermistor.set_pin(thermistorInputPin)
+
+enum buttonState = {INIT, RISE, BREW, DOWN, OFF}
+
+buttonState button;
+
+#turned on
+start timer. log temperature. 
+have a loop: 
+
+timer = start.timer().
+
+while (buttonState == INIT){
+    measure temp;
+    log temp; 
+    print temp and timer.seconds();
+    if (buttonPressed){
+        buttonState++;
+        startRise = timer.seconds();
+}
+while (buttonState == RISE){
+    measure temp;
+    log temp; 
+    print temp and timer.seconds() - startRise;
+    if (buttonPressed) {
+        buttonState++;
+        startBrew = timer.seconds();
+    }
+}
+while (buttonState == BREW){
+    measure Slurrytemp; 
+    log temp;
+    print temp and timer.seconds() - startBrew;
+    if (buttonPressed) {
+       buttonState++;
+       startDraw = timer.seconds();
+    }
+}
+while (buttonState == DOWN){
+    measure slurrytemp;
+    log temp;
+    print temp and timer.seconds()  - startDraw;
+    if (buttonPressed) {
+        buttonState++;
+        endTime = timer.seconds();
+    }
+}
+log startRise, startBrew, startDraw, and endTime; 

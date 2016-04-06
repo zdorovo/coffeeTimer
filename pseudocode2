@@ -1,0 +1,22 @@
+enum buttonState = {INIT, RISE, BREW, DOWN, OFF}
+NUMSTATES = 5;
+
+buttonState button = INIT;
+init timer.
+write.open(logfile)
+offset = 0;
+timesarray[NUMSTATES];
+
+while(button < OFF){
+    (base, slurry) = measure temps;
+    print (base, slurry, timer.seconds() - offset)
+    writeinfo (base, slurry, timer.seconds())
+    if (buttonPressed) {
+        offset = timer.seconds();
+        timesarray[button] = offset;
+        button++;
+    }
+}
+
+writearray(timesarray);
+
